@@ -7,7 +7,7 @@ spec:
     source: Remote
     module: git::https://github.com/nagyv/crossplane-contrib-provider-terraform-issues-79.git//tf/module?ref=main
     varFiles:
-      - source: ConfigMap
+      - source: ConfigMapKey
         configMapKeyRef:
           namespace: default
           name: petname
