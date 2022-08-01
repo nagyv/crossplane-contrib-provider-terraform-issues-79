@@ -1,0 +1,22 @@
+---
+apiVersion: tf.crossplane.io/v1alpha1
+kind: ProviderConfig
+metadata:
+  name: terraform-provider-github
+spec:
+  credentials:
+  - filename: .git-credentials
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: github-credentials
+      key: creds
+  configuration: |
+    terraform {
+      backend "kubernetes" {
+        secret_suffix    = "crossplane"
+        in_cluster_config = true
+        namespace = "crossplane-system"
+      }
+    }
+    
