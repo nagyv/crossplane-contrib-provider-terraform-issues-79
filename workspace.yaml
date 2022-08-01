@@ -12,6 +12,7 @@ spec:
           namespace: default
           name: petname
           key: name_length
+        format: JSON
   providerConfigRef:
     name: terraform-provider-github
   writeConnectionSecretToRef:
