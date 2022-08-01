@@ -1,0 +1,19 @@
+apiVersion: tf.crossplane.io/v1alpha1
+kind: Workspace
+metadata:
+  name: petname
+spec:
+  forProvider:
+    source: Remote
+    module: git::https://github.com/nagyv/crossplane-contrib-provider-terraform-issues-79.git//tf/module?ref=main
+    varFiles:
+      - source: ConfigMap
+        configMapKeyRef:
+          namespace: default
+          name: petname
+          key: name_length
+  providerConfigRef:
+    name: terraform-provider
+  writeConnectionSecretToRef:
+    namespace: default
+    name: petname
